@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gabi's 60. Geburtstag – Disco Fever Party">
+  <title>Gabi's 60. 🪩</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:   #FFD700;
+      --pink:   #FF1493;
+      --purple: #7B2FBE;
+      --dark:   #080015;
+      --card-bg: rgba(255,255,255,0.05);
+      --silver: #C8C8C8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      /* bottom nav padding so content isn't hidden behind it */
+      padding-bottom: 80px;
+    }
+
+    /* ── BACKGROUND STARS ─────────────────────────────────────── */
+    #bg-stars {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: #fff;
+      animation: twinkle var(--d, 3s) ease-in-out infinite var(--dl, 0s);
+    }
+    @keyframes twinkle {
+      0%,100% { opacity: .15; transform: scale(1); }
+      50%      { opacity: 1;   transform: scale(1.6); }
+    }
+
+    /* ── DISCO BALL ───────────────────────────────────────────── */
+    .disco-wrap {
+      display: flex; flex-direction: column; align-items: center;
+      margin-bottom: 1.5rem; position: relative; z-index: 2;
+    }
+    .disco-string {
+      width: 2px; height: 64px;
+      background: linear-gradient(to bottom, transparent, var(--silver));
+    }
+    .disco-ball {
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      position: relative;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px, transparent 12px,
+          rgba(0,0,0,.45) 12px, rgba(0,0,0,.45) 14px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent 0px, transparent 12px,
+          rgba(0,0,0,.45) 12px, rgba(0,0,0,.45) 14px
+        ),
+        radial-gradient(
+          ellipse at 38% 32%,
+          #fff 0%, #e4e4e4 8%, #bbb 22%,
+          #888 44%, #555 68%, #2a2a2a 100%
+        );
+      box-shadow:
+        inset -22px -18px 48px rgba(0,0,0,.7),
+        inset 8px 8px 20px rgba(255,255,255,.25),
+        0 0 40px rgba(255,215,0,.35),
+        0 0 80px rgba(255,20,147,.2),
+        0 0 120px rgba(123,47,190,.25);
+      animation: ballTiles 5s linear infinite, ballFloat 3.5s ease-in-out infinite;
+    }
+    @keyframes ballTiles {
+      from { background-position: 0 0,   0 0, center; }
+      to   { background-position: 0 84px,0 0, center; }
+    }
+    @keyframes ballFloat {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-12px); }
+    }
+    /* highlight shine */
+    .disco-ball::after {
+      content: '';
+      position: absolute; top: 8%; left: 12%;
+      width: 32%; height: 22%;
+      background: radial-gradient(ellipse, rgba(255,255,255,.65) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: highlightPulse 3.5s ease-in-out infinite;
+    }
+    @keyframes highlightPulse {
+      0%,100% { opacity: .65; }
+      50%     { opacity: .35; }
+    }
+
+    /* light beams */
+    #beams {
+      position: absolute; top: 50%; left: 50%;
+      width: 0; height: 0; pointer-events: none;
+    }
+    .beam {
+      position: absolute;
+      width: 3px; height: 220px;
+      transform-origin: 50% 0%;
+      top: 0; left: 0;
+      border-radius: 2px;
+      opacity: .7;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2rem 1.5rem;
+      position: relative; text-align: center;
+      background: radial-gradient(ellipse at top, #1c0048 0%, #080015 65%);
+      z-index: 1;
+    }
+
+    .pre-title {
+      font-size: .8rem; letter-spacing: .35em;
+      text-transform: uppercase; color: var(--silver);
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3.8rem, 16vw, 6.5rem);
+      line-height: 1.0;
+      background: linear-gradient(135deg, #FFD700 0%, #FF69B4 50%, #FFD700 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 0%   50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0%   50%; }
+    }
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 5vw, 1.8rem);
+      color: var(--gold); letter-spacing: .2em;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .disco-label {
+      font-size: .85rem; letter-spacing: .6em;
+      text-transform: uppercase; color: var(--pink);
+      font-weight: 600; margin-bottom: 1.8rem;
+      animation: neonPulse 2s ease-in-out infinite;
+    }
+    @keyframes neonPulse {
+      0%,100% { text-shadow: 0 0 8px var(--pink),  0 0 20px var(--pink); }
+      50%     { text-shadow: 0 0 16px var(--pink), 0 0 45px var(--pink), 0 0 70px var(--pink); }
+    }
+    .hero-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,215,0,.25);
+      border-radius: 14px;
+      padding: .9rem 1.6rem;
+      margin-top: .5rem;
+    }
+    .hero-date {
+      color: var(--gold); font-size: 1.05rem; font-weight: 600;
+    }
+    .hero-venue {
+      color: rgba(255,255,255,.75); font-size: .9rem; margin-top: .2rem;
+    }
+    .scroll-cue {
+      position: absolute; bottom: 1.8rem; left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.35); font-size: .7rem;
+      letter-spacing: .25em; text-transform: uppercase;
+      animation: cueFloat 2s ease-in-out infinite;
+    }
+    .scroll-cue::after { content: '\A↓'; white-space: pre; display: block; text-align: center; font-size: 1.3rem; }
+    @keyframes cueFloat {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%     { transform: translateX(-50%) translateY(7px); }
+    }
+
+    /* ── SHARED SECTION STYLES ────────────────────────────────── */
+    section { position: relative; z-index: 1; padding: 4rem 1.25rem; }
+    .inner  { max-width: 580px; margin: 0 auto; }
+
+    .sec-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 7vw, 2.4rem);
+      color: var(--gold); text-align: center;
+      margin-bottom: .4rem;
+    }
+    .sec-dots {
+      text-align: center; color: var(--pink);
+      letter-spacing: .6em; margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,215,0,.18);
+      border-radius: 16px;
+      padding: 1.75rem 1.4rem;
+      margin-bottom: .9rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .card:hover {
+      border-color: rgba(255,215,0,.45);
+      box-shadow: 0 0 22px rgba(255,215,0,.1);
+    }
+
+    /* ── PHOTOS ───────────────────────────────────────────────── */
+    #photos { background: rgba(0,0,0,.35); }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .65rem;
+    }
+    .photo-grid img {
+      width: 100%; aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid rgba(255,215,0,.25);
+      transition: transform .3s, border-color .3s;
+      display: block;
+    }
+    .photo-grid img:first-child {
+      grid-column: span 2;
+      aspect-ratio: 4/3;
+    }
+    .photo-grid img:hover {
+      transform: scale(1.03);
+      border-color: var(--gold);
+    }
+    /* lightbox-style click to enlarge */
+    .photo-grid img { cursor: zoom-in; }
+
+    /* ── ADDRESS ──────────────────────────────────────────────── */
+    .info-icon  { font-size: 2.2rem; text-align: center; margin-bottom: .6rem; }
+    .info-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem; color: var(--gold);
+      text-align: center; margin-bottom: .5rem;
+    }
+    .info-body  { text-align: center; color: rgba(255,255,255,.82); line-height: 1.75; }
+    .btn {
+      display: inline-block;
+      margin-top: 1.2rem;
+      padding: .7rem 1.8rem;
+      background: linear-gradient(135deg, var(--gold), #FFA500);
+      color: #000; font-weight: 700;
+      text-decoration: none; border-radius: 50px;
+      font-size: .88rem; letter-spacing: .04em;
+      box-shadow: 0 4px 16px rgba(255,215,0,.3);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(255,215,0,.5); }
+    .btn-center { display: flex; justify-content: center; }
+
+    /* ── DRESSCODE ────────────────────────────────────────────── */
+    #dresscode { background: rgba(123,47,190,.08); }
+    .video-wrap {
+      width: 100%; max-width: 420px;
+      margin: 0 auto;
+      border-radius: 16px; overflow: hidden;
+      border: 2px solid rgba(255,215,0,.3);
+      box-shadow: 0 0 35px rgba(255,20,147,.18);
+    }
+    .video-wrap video { width: 100%; display: block; }
+    .dresscode-note {
+      text-align: center; margin-top: 1.4rem;
+      color: rgba(255,255,255,.8); line-height: 1.65;
+    }
+    .dresscode-note strong { color: var(--pink); font-size: 1.15rem; display: block; margin-bottom: .3rem; }
+
+    /* ── GIFT ─────────────────────────────────────────────────── */
+    #gift .big-emoji { font-size: 3.5rem; text-align: center; display: block; margin-bottom: 1rem; }
+    .gift-text { text-align: center; line-height: 1.8; color: rgba(255,255,255,.85); }
+    .gift-text p + p { margin-top: .9rem; }
+    .gold  { color: var(--gold);  font-weight: 700; }
+    .pink  { color: var(--pink);  font-weight: 700; }
+
+    /* ── MUSIC ────────────────────────────────────────────────── */
+    #music { background: rgba(0,0,0,.3); }
+    .spotify-wrap {
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 0 30px rgba(30,215,96,.18);
+    }
+    .spotify-wrap iframe { border: none; display: block; border-radius: 14px; }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      text-align: center; padding: 1.5rem;
+      color: rgba(255,255,255,.25); font-size: .78rem;
+      letter-spacing: .1em; z-index: 1; position: relative;
+    }
+
+    /* ── BOTTOM NAV ───────────────────────────────────────────── */
+    nav {
+      position: fixed; bottom: 1.2rem; left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      display: flex; gap: .25rem;
+      background: rgba(8,0,21,.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: .45rem .75rem;
+      border-radius: 50px;
+      border: 1px solid rgba(255,215,0,.22);
+    }
+    nav a {
+      color: rgba(255,255,255,.5);
+      text-decoration: none; font-size: .65rem;
+      letter-spacing: .04em; text-transform: uppercase;
+      padding: .3rem .55rem; border-radius: 20px;
+      transition: color .2s, background .2s;
+      white-space: nowrap;
+    }
+    nav a:hover, nav a.active {
+      color: var(--gold);
+      background: rgba(255,215,0,.1);
+    }
+
+    /* ── SCROLL FADE-IN ───────────────────────────────────────── */
+    .fade {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .fade.visible { opacity: 1; transform: none; }
+
+    /* ── LIGHTBOX ─────────────────────────────────────────────── */
+    #lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.92);
+      z-index: 500; align-items: center; justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 95vw; max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 0 60px rgba(255,215,0,.25);
+    }
+    #lightbox-close {
+      position: absolute; top: 1rem; right: 1.2rem;
+      font-size: 2rem; color: #fff; cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ── FLOATING SPARKLES ────────────────────────────────────── */
+    .sparkle-p {
+      position: fixed; pointer-events: none; z-index: 0;
+      animation: floatUp var(--d) ease-in-out forwards;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(100vh) rotate(0deg);   opacity: 0; }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { transform: translateY(-5vh) rotate(540deg);  opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ░░ BACKGROUND STARS ░░ -->
+<div id="bg-stars"></div>
+
+<!-- ░░ HERO ░░ -->
+<section id="hero">
+  <div class="disco-wrap">
+    <div class="disco-string"></div>
+    <div class="disco-ball">
+      <div id="beams"></div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <p class="pre-title">Du bist herzlich eingeladen zu</p>
+    <h1>Gabi's<br>60sten!</h1>
+    <p class="hero-sub">Geburtstag</p>
+    <p class="disco-label">✦ Disco Fever ✦</p>
+
+    <div class="hero-card">
+      <!-- DATUM: Hier das echte Datum eintragen, z.B. "Samstag, 14. Juni 2025" -->
+      <p class="hero-date">🗓 [Datum hier eintragen]</p>
+      <p class="hero-venue">Ab 18:00 Uhr &nbsp;·&nbsp; Wirtsstodl, Tauberfeld</p>
+    </div>
+  </div>
+
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<!-- ░░ PHOTOS ░░ -->
+<section id="photos">
+  <div class="inner">
+    <h2 class="sec-title fade">Die Geburtstagskind 👑</h2>
+    <p class="sec-dots fade">✦ &nbsp; ✦ &nbsp; ✦</p>
+
+    <div class="photo-grid fade">
+      <!--
+        Bilder einfach in einen "images/" Ordner hochladen
+        und die Dateinamen hier anpassen.
+        Das erste Bild wird groß (quer) dargestellt.
+      -->
+      <img src="images/foto1.jpg" alt="Gabi">
+      <img src="images/foto2.jpg" alt="Gabi">
+      <img src="images/foto3.jpg" alt="Gabi">
+      <img src="images/foto4.jpg" alt="Gabi">
+      <img src="images/foto5.jpg" alt="Gabi">
+      <img src="images/foto6.jpg" alt="Gabi">
+    </div>
+  </div>
+</section>
+
+<!-- ░░ ADDRESS ░░ -->
+<section id="info">
+  <div class="inner">
+    <h2 class="sec-title fade">Wo &amp; Wann 📍</h2>
+    <p class="sec-dots fade">✦ &nbsp; ✦ &nbsp; ✦</p>
+
+    <div class="card fade">
+      <div class="info-icon">🏠</div>
+      <p class="info-title">Wirtsstodl Tauberfeld</p>
+      <p class="info-body">
+        Kirchplatz 1a<br>
+        Tauberfeld
+      </p>
+      <div class="btn-center">
+        <a href="https://www.google.com/maps/search/?api=1&query=Kirchplatz+1a+Tauberfeld" target="_blank" rel="noopener" class="btn">
+          📍 In Google Maps öffnen
+        </a>
+      </div>
+    </div>
+
+    <div class="card fade">
+      <div class="info-icon">🕕</div>
+      <p class="info-title">Ab 18:00 Uhr</p>
+      <p class="info-body">
+        Für Essen &amp; Trinken ist gesorgt!<br>
+        <span style="color:var(--gold);">🥂 Kommt hungrig &amp; durstig!</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ DRESSCODE ░░ -->
+<section id="dresscode">
+  <div class="inner">
+    <h2 class="sec-title fade">Dress Code 🪩</h2>
+    <p class="sec-dots fade">✦ &nbsp; ✦ &nbsp; ✦</p>
+
+    <div class="video-wrap fade">
+      <!--
+        Lade dein Video als "video/dresscode.mp4" hoch.
+        Das poster-Bild ("images/dresscode-poster.jpg") wird angezeigt,
+        solange das Video lädt – optional.
+      -->
+      <video controls playsinline poster="images/dresscode-poster.jpg">
+        <source src="video/dresscode.mp4" type="video/mp4">
+        Dein Browser unterstützt kein Video.
+      </video>
+    </div>
+
+    <div class="dresscode-note fade">
+      <strong>DISCO FEVER ✨</strong>
+      Glitzer, Pailletten, Plattformschuhe –<br>je mehr Glamour, desto besser!
+    </div>
+  </div>
+</section>
+
+<!-- ░░ GIFT MESSAGE ░░ -->
+<section id="gift">
+  <div class="inner">
+    <h2 class="sec-title fade">Was mitbringen? 🎉</h2>
+    <p class="sec-dots fade">✦ &nbsp; ✦ &nbsp; ✦</p>
+
+    <div class="card fade" style="text-align:center;">
+      <span class="big-emoji">🥳</span>
+      <div class="gift-text">
+        <p>Du brauchst nur <span class="gold">dich</span> und <span class="pink">gute Laune</span> mitbringen!</p>
+        <p style="color:rgba(255,255,255,.72);">
+          Falls du trotzdem etwas schenken möchtest,<br>
+          steht eine <span class="gold">🐷 Spardose</span> bereit –<br>
+          damit ich mir einen Wunsch erfüllen kann. 💫
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ MUSIC ░░ -->
+<section id="music">
+  <div class="inner">
+    <h2 class="sec-title fade">Stimmungsmusik 🎵</h2>
+    <p class="sec-dots fade">✦ &nbsp; ✦ &nbsp; ✦</p>
+
+    <div class="spotify-wrap fade">
+      <!--
+        Spotify Track einbetten:
+        1. Öffne deinen Song auf Spotify
+        2. Klicke "..." → "Teilen" → "Song-Link kopieren"
+           Beispiel: https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC
+        3. Kopiere die Track-ID (der Teil nach /track/)
+        4. Ersetze TRACK_ID_HIER unten mit deiner ID
+
+        Aktuell: Platzhalter – "Night Fever" von Bee Gees 🕺
+      -->
+      <iframe
+        src="https://open.spotify.com/embed/track/TRACK_ID_HIER?utm_source=generator&theme=0"
+        width="100%"
+        height="152"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ FOOTER ░░ -->
+<footer>
+  🪩 Party like it's 1966! Happy 60th, Gabi! 🪩
+</footer>
+
+<!-- ░░ BOTTOM NAV ░░ -->
+<nav id="main-nav">
+  <a href="#hero">Start</a>
+  <a href="#photos">Fotos</a>
+  <a href="#info">Infos</a>
+  <a href="#dresscode">Style</a>
+  <a href="#gift">Geschenk</a>
+</nav>
+
+<!-- ░░ LIGHTBOX ░░ -->
+<div id="lightbox">
+  <span id="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  /* ── STARS ── */
+  const starsEl = document.getElementById('bg-stars');
+  for (let i = 0; i < 90; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = .8 + Math.random() * 2;
+    s.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${Math.random()*100}%;
+      width:${size}px; height:${size}px;
+      --d:${2+Math.random()*4}s;
+      --dl:${-Math.random()*5}s;
+    `;
+    starsEl.appendChild(s);
+  }
+
+  /* ── LIGHT BEAMS ── */
+  const beamsEl  = document.getElementById('beams');
+  const beamCols = ['#FFD700','#FF1493','#00CFFF','#ADFF2F','#FF69B4','#DA70D6','#FFA500','#7FFF00'];
+  beamCols.forEach((col, i) => {
+    const b = document.createElement('div');
+    b.className = 'beam';
+    const angle = i * (360 / beamCols.length);
+    b.style.cssText = `
+      background: linear-gradient(to bottom, ${col}cc, transparent);
+      transform: rotate(${angle}deg);
+      animation: beamSpin ${2.5 + i * .4}s linear infinite ${i * .3}s;
+    `;
+    beamsEl.appendChild(b);
+  });
+
+  /* inject beam keyframe once */
+  const ks = document.createElement('style');
+  ks.textContent = `
+    @keyframes beamSpin {
+      from { transform: rotate(var(--start, 0deg)); }
+      to   { transform: rotate(calc(var(--start, 0deg) + 360deg)); }
+    }
+  `;
+  document.head.appendChild(ks);
+
+  // Give each beam its own start angle via CSS var
+  document.querySelectorAll('.beam').forEach((b, i) => {
+    b.style.setProperty('--start', (i * 45) + 'deg');
+    b.style.animation = `beamSpin ${2.5 + i * .4}s linear infinite ${i * .3}s`;
+  });
+
+  /* ── SCROLL FADE-IN ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: .12 });
+  document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+
+  /* ── ACTIVE NAV ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('#main-nav a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+  }, { passive: true });
+
+  /* ── LIGHTBOX ── */
+  const lightbox   = document.getElementById('lightbox');
+  const lbImg      = document.getElementById('lightbox-img');
+  const lbClose    = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.photo-grid img').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  [lightbox, lbClose].forEach(el => {
+    el.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* ── FLOATING SPARKLES ── */
+  const sparks = ['✨','⭐','🌟','💫','✦','★'];
+  function dropSparkle() {
+    const p = document.createElement('div');
+    p.className = 'sparkle-p';
+    p.textContent = sparks[Math.floor(Math.random() * sparks.length)];
+    const dur = 5 + Math.random() * 5;
+    p.style.cssText = `
+      left: ${Math.random()*100}vw;
+      font-size: ${.6+Math.random()*1.2}rem;
+      --d: ${dur}s;
+    `;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), dur * 1000);
+  }
+  setInterval(dropSparkle, 900);
+  // seed a few immediately
+  for (let i = 0; i < 6; i++) setTimeout(dropSparkle, i * 200);
+</script>
+
+</body>
+</html>
