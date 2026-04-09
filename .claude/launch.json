@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "birthday-site",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "3456", "--directory", "H:/03_Python_Code/gabis-60ter"],
+      "port": 3456
+    }
+  ]
+}

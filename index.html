@@ -7,7 +7,7 @@
   <title>Gabi's 60th</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -95,7 +95,9 @@
     }
 
     .t-name {
-      font-family: 'Pacifico', cursive;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
       font-size: clamp(3.2rem, 14vw, 5.5rem);
       color: var(--white);
       line-height: 1.1;
@@ -104,25 +106,27 @@
     .t-num {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-weight: 300;
-      font-size: clamp(4.5rem, 20vw, 8rem);
+      font-weight: 700;
+      font-size: clamp(5.5rem, 26vw, 10rem);
       color: var(--pink);
-      line-height: .9;
+      line-height: .85;
     }
 
     .t-num sup {
-      font-size: .38em;
+      font-size: .32em;
       vertical-align: super;
       font-style: normal;
+      font-weight: 600;
     }
 
     .t-party {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
-      font-size: clamp(1.6rem, 7vw, 3rem);
+      font-size: clamp(1.1rem, 5vw, 2rem);
       color: var(--white);
-      letter-spacing: .05em;
-      line-height: 1.1;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      line-height: 1.2;
     }
 
     .hero-motto {
@@ -250,11 +254,43 @@
     /* ── DRESSCODE ────────────────────────────────────────────── */
     #dresscode { background: #0d0d0d; }
 
-    .video-single {
-      width: 100%; max-width: 340px;
-      margin: 0 auto; display: block;
+    .dresscode-frame {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr 1fr;
+      gap: .35rem;
+      align-items: stretch;
     }
-    .video-single video {
+
+    .frame-col {
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+
+    .frame-col img {
+      width: 100%; flex: 1;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+      filter: brightness(.88) saturate(.8);
+      transition: filter .3s;
+      /* fill equal halves of the column */
+      min-height: 0;
+    }
+    .frame-col img:hover { filter: brightness(1) saturate(1); }
+
+    /* placeholder when no image uploaded yet */
+    .frame-col .placeholder {
+      flex: 1; min-height: 120px;
+      background: rgba(255,255,255,.04);
+      border: 1px dashed rgba(255,255,255,.15);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .55rem; letter-spacing: .2em;
+      text-transform: uppercase; color: rgba(255,255,255,.2);
+    }
+
+    .frame-video video {
       width: 100%; display: block;
       aspect-ratio: 9/16; object-fit: cover;
       border-radius: 2px; background: #111;
@@ -381,13 +417,13 @@
 <!-- PHOTOS -->
 <section id="photos">
   <div class="inner">
-    <span class="sec-label fade">Die Geburtstagskind</span>
+    <span class="sec-label fade">Das Geburtstagskind</span>
     <div class="gallery fade">
       <div class="gallery-item"><img src="images/foto1.jpg" alt="Gabi"></div>
       <div class="gallery-item"><img src="images/foto3.jpg" alt="Gabi"></div>
-      <div class="gallery-item"><img src="images/foto4.jpg" alt="Gabi"></div>
       <div class="gallery-item"><img src="images/foto5.jpg" alt="Gabi"></div>
       <div class="gallery-item"><img src="images/foto6.jpg" alt="Gabi"></div>
+      <div class="gallery-item"><img src="images/foto4.jpg" alt="Gabi"></div>
     </div>
   </div>
 </section>
@@ -429,11 +465,26 @@
   <div class="inner">
     <span class="sec-label fade">Dress Code</span>
     <h2 class="sec-title fade">Disco Fever</h2>
-    <div class="video-single fade">
-      <video id="dc-video" autoplay loop muted playsinline>
-        <source src="video/dresscode2.mov" type="video/quicktime">
-        <source src="video/dresscode2.mov" type="video/mp4">
-      </video>
+    <div class="dresscode-frame fade">
+      <!-- Left column: outfit inspiration images -->
+      <div class="frame-col">
+        <img src="outfits/outfit1.jpg" alt="Outfit Inspiration" onerror="this.outerHTML='<div class=\'placeholder\'>Foto</div>'">
+        <img src="outfits/outfit2.jpg" alt="Outfit Inspiration" onerror="this.outerHTML='<div class=\'placeholder\'>Foto</div>'">
+      </div>
+
+      <!-- Center: video -->
+      <div class="frame-video">
+        <video id="dc-video" autoplay loop muted playsinline>
+          <source src="video/dresscode2.mov" type="video/quicktime">
+          <source src="video/dresscode2.mov" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Right column: outfit inspiration images -->
+      <div class="frame-col">
+        <img src="outfits/outfit3.jpg" alt="Outfit Inspiration" onerror="this.outerHTML='<div class=\'placeholder\'>Foto</div>'">
+        <img src="outfits/outfit4.jpg" alt="Outfit Inspiration" onerror="this.outerHTML='<div class=\'placeholder\'>Foto</div>'">
+      </div>
     </div>
   </div>
 </section>
