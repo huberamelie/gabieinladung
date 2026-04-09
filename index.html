@@ -7,17 +7,17 @@
   <title>Gabi's 60th</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Pacifico&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --pink:    #C8185E;
-      --silver:  #A0A0A0;
-      --white:   #F4F4F4;
-      --black:   #080808;
-      --border:  rgba(255,255,255,.1);
+      --pink:   #C8185E;
+      --silver: #A0A0A0;
+      --white:  #F4F4F4;
+      --black:  #080808;
+      --border: rgba(255,255,255,.1);
     }
 
     html { scroll-behavior: smooth; }
@@ -35,7 +35,7 @@
     #hero {
       position: relative;
       height: 100svh;
-      min-height: 580px;
+      min-height: 600px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -51,7 +51,7 @@
       background-image: url('images/foto1.jpg');
       background-size: cover;
       background-position: center top;
-      filter: brightness(.5) saturate(.75);
+      filter: brightness(.45) saturate(.7);
       transform: scale(1.05);
       transition: transform 10s ease-out;
     }
@@ -63,9 +63,9 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(8,8,8,0)    0%,
-        rgba(8,8,8,.1)  50%,
-        rgba(8,8,8,.8)  82%,
+        rgba(8,8,8,0)   0%,
+        rgba(8,8,8,.05) 45%,
+        rgba(8,8,8,.75) 80%,
         rgba(8,8,8,1)  100%
       );
     }
@@ -77,43 +77,70 @@
     }
 
     .hero-eyebrow {
-      font-size: .62rem;
-      font-weight: 500;
-      letter-spacing: .4em;
-      text-transform: uppercase;
-      color: var(--silver);
-      margin-bottom: 1.2rem;
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      font-size: clamp(4rem, 18vw, 6.5rem);
-      line-height: .92;
-      color: var(--white);
-    }
-
-    .hero-title em {
-      color: var(--pink);
-      font-style: italic;
-    }
-
-    .hero-sub {
-      margin-top: 1.4rem;
-      font-size: .62rem;
+      font-size: .6rem;
       font-weight: 500;
       letter-spacing: .45em;
+      text-transform: uppercase;
+      color: var(--silver);
+      margin-bottom: 1.1rem;
+    }
+
+    /* title block */
+    .hero-title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .15rem;
+      line-height: 1;
+    }
+
+    .t-name {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(3.2rem, 14vw, 5.5rem);
+      color: var(--white);
+      line-height: 1.1;
+    }
+
+    .t-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(4.5rem, 20vw, 8rem);
+      color: var(--pink);
+      line-height: .9;
+    }
+
+    .t-num sup {
+      font-size: .38em;
+      vertical-align: super;
+      font-style: normal;
+    }
+
+    .t-party {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 7vw, 3rem);
+      color: var(--white);
+      letter-spacing: .05em;
+      line-height: 1.1;
+    }
+
+    .hero-motto {
+      margin-top: 1.2rem;
+      font-size: .6rem;
+      font-weight: 500;
+      letter-spacing: .55em;
       text-transform: uppercase;
       color: var(--silver);
     }
 
     .hero-date {
       display: inline-block;
-      margin-top: .8rem;
+      margin-top: .75rem;
       padding: .45rem 1.4rem;
-      border: 1px solid rgba(200,24,94,.55);
+      border: 1px solid rgba(200,24,94,.5);
       border-radius: 1px;
-      font-size: .65rem;
+      font-size: .62rem;
       font-weight: 500;
       letter-spacing: .35em;
       text-transform: uppercase;
@@ -122,20 +149,15 @@
 
     .scroll-cue {
       position: absolute;
-      bottom: 1.8rem;
-      left: 50%;
+      bottom: 1.8rem; left: 50%;
       transform: translateX(-50%);
       z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .5rem;
-      color: rgba(255,255,255,.25);
+      display: flex; flex-direction: column;
+      align-items: center; gap: .5rem;
+      color: rgba(255,255,255,.22);
     }
     .scroll-cue span {
-      font-size: .52rem;
-      letter-spacing: .35em;
-      text-transform: uppercase;
+      font-size: .5rem; letter-spacing: .35em; text-transform: uppercase;
     }
     .scroll-cue svg { animation: nudge 2.2s ease-in-out infinite; }
     @keyframes nudge {
@@ -149,20 +171,16 @@
 
     .sec-label {
       display: block;
-      font-size: .58rem;
-      font-weight: 500;
-      letter-spacing: .45em;
-      text-transform: uppercase;
-      color: var(--pink);
-      margin-bottom: .8rem;
+      font-size: .56rem; font-weight: 500;
+      letter-spacing: .48em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: .8rem;
     }
 
     .sec-title {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
       font-size: clamp(2rem, 8vw, 3rem);
-      color: var(--white);
-      line-height: 1.05;
+      color: var(--white); line-height: 1.05;
       margin-bottom: 2.5rem;
     }
 
@@ -183,8 +201,7 @@
     .gallery-item { overflow: hidden; cursor: zoom-in; }
     .gallery-item img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
+      object-fit: cover; display: block;
       transition: transform .65s ease, filter .4s ease;
       filter: brightness(.88) saturate(.8);
     }
@@ -192,51 +209,40 @@
       transform: scale(1.05);
       filter: brightness(1) saturate(1);
     }
+    /* first item: full width, landscape */
     .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 3/2; }
+    /* rest: square */
     .gallery-item:nth-child(n+2) { aspect-ratio: 1; }
 
     /* ── DETAILS ──────────────────────────────────────────────── */
     #info { background: var(--black); }
 
-    .detail-block { margin-bottom: 0; }
-
     .detail-key {
       display: block;
-      font-size: .56rem;
-      font-weight: 500;
-      letter-spacing: .4em;
-      text-transform: uppercase;
-      color: var(--silver);
-      margin-bottom: .45rem;
+      font-size: .54rem; font-weight: 500;
+      letter-spacing: .42em; text-transform: uppercase;
+      color: var(--silver); margin-bottom: .45rem;
     }
 
     .detail-val {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.55rem;
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1.35;
+      font-size: 1.55rem; font-weight: 300;
+      color: var(--white); line-height: 1.35;
     }
 
     .detail-note {
-      margin-top: .4rem;
-      font-size: .82rem;
-      color: var(--silver);
-      line-height: 1.65;
+      margin-top: .4rem; font-size: .82rem;
+      color: var(--silver); line-height: 1.65;
     }
 
     .map-link {
       display: inline-block;
-      margin-top: 1.1rem;
-      padding: .6rem 1.4rem;
-      border: 1px solid rgba(200,24,94,.55);
+      margin-top: 1.1rem; padding: .6rem 1.4rem;
+      border: 1px solid rgba(200,24,94,.5);
       border-radius: 1px;
-      color: var(--pink);
-      text-decoration: none;
-      font-size: .62rem;
-      font-weight: 500;
-      letter-spacing: .28em;
-      text-transform: uppercase;
+      color: var(--pink); text-decoration: none;
+      font-size: .6rem; font-weight: 500;
+      letter-spacing: .28em; text-transform: uppercase;
       transition: background .2s, color .2s;
     }
     .map-link:hover { background: var(--pink); color: #fff; }
@@ -244,107 +250,101 @@
     /* ── DRESSCODE ────────────────────────────────────────────── */
     #dresscode { background: #0d0d0d; }
 
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: .4rem;
+    .video-single {
+      width: 100%; max-width: 340px;
+      margin: 0 auto; display: block;
     }
-    .video-grid video {
-      width: 100%;
-      display: block;
-      aspect-ratio: 9/16;
-      object-fit: cover;
-      border-radius: 1px;
-      background: #111;
+    .video-single video {
+      width: 100%; display: block;
+      aspect-ratio: 9/16; object-fit: cover;
+      border-radius: 2px; background: #111;
     }
 
-    /* ── GIFT ─────────────────────────────────────────────────── */
-    #gift { background: var(--black); }
+    /* ── GIFT — dark disco-ball background ────────────────────── */
+    #gift {
+      position: relative;
+      overflow: hidden;
+    }
+    #gift-bg {
+      position: absolute; inset: 0;
+      background-image: url('images/foto2.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(.35);
+    }
+    #gift::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(8,8,8,.6) 0%,
+        rgba(8,8,8,.3) 50%,
+        rgba(8,8,8,.7) 100%
+      );
+    }
+    #gift .inner { position: relative; z-index: 2; }
 
     .gift-quote {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.4rem, 5.5vw, 1.9rem);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--white);
-      line-height: 1.6;
+      font-weight: 300; font-style: italic;
+      color: var(--white); line-height: 1.6;
     }
 
     .gift-note {
-      margin-top: 1.5rem;
-      font-size: .85rem;
-      color: var(--silver);
-      line-height: 1.75;
+      margin-top: 1.5rem; font-size: .85rem;
+      color: rgba(255,255,255,.7); line-height: 1.75;
     }
-
     .gift-note strong { color: var(--pink); font-weight: 400; }
 
     /* ── MUSIC ────────────────────────────────────────────────── */
-    #music { background: #0d0d0d; }
+    #music { background: var(--black); }
 
     .spotify-wrap { border-radius: 3px; overflow: hidden; }
     .spotify-wrap iframe { border: none; display: block; border-radius: 3px; }
 
     /* ── FOOTER ───────────────────────────────────────────────── */
     footer {
-      padding: 1.8rem 1.5rem;
-      text-align: center;
-      font-size: .58rem;
-      letter-spacing: .28em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.18);
+      padding: 1.8rem 1.5rem; text-align: center;
+      font-size: .56rem; letter-spacing: .28em;
+      text-transform: uppercase; color: rgba(255,255,255,.18);
     }
 
     /* ── BOTTOM NAV ───────────────────────────────────────────── */
     nav {
       position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 200;
+      bottom: 0; left: 0; right: 0; z-index: 200;
       display: flex;
       background: rgba(8,8,8,.96);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
       border-top: 1px solid var(--border);
     }
     nav a {
-      flex: 1;
-      padding: .9rem .2rem .85rem;
-      text-align: center;
-      color: rgba(255,255,255,.3);
-      text-decoration: none;
-      font-size: .55rem;
-      font-weight: 500;
-      letter-spacing: .18em;
-      text-transform: uppercase;
+      flex: 1; padding: .9rem .2rem .85rem; text-align: center;
+      color: rgba(255,255,255,.3); text-decoration: none;
+      font-size: .54rem; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase;
       transition: color .2s;
     }
     nav a:hover, nav a.active { color: var(--pink); }
 
     /* ── LIGHTBOX ─────────────────────────────────────────────── */
     #lightbox {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,.96);
-      z-index: 500;
-      align-items: center;
-      justify-content: center;
-      cursor: zoom-out;
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.96); z-index: 500;
+      align-items: center; justify-content: center; cursor: zoom-out;
     }
     #lightbox.open { display: flex; }
     #lightbox img { max-width: 95vw; max-height: 92vh; object-fit: contain; }
     #lb-close {
       position: absolute; top: 1.2rem; right: 1.5rem;
-      color: rgba(255,255,255,.4);
-      font-size: 1.8rem;
-      cursor: pointer;
-      font-weight: 200;
-      line-height: 1;
+      color: rgba(255,255,255,.4); font-size: 1.8rem;
+      cursor: pointer; font-weight: 200; line-height: 1;
     }
 
     /* ── FADE IN ──────────────────────────────────────────────── */
     .fade {
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 0; transform: translateY(20px);
       transition: opacity .75s ease, transform .75s ease;
     }
     .fade.in { opacity: 1; transform: none; }
@@ -358,9 +358,15 @@
   <div id="hero-bg"></div>
 
   <div class="hero-inner">
-    <p class="hero-eyebrow">Du bist herzlich eingeladen</p>
-    <h1 class="hero-title">Gabi's<br><em>60th</em></h1>
-    <p class="hero-sub">Birthday Party &nbsp;&middot;&nbsp; Disco Fever</p>
+    <p class="hero-eyebrow">You are invited to</p>
+
+    <div class="hero-title">
+      <span class="t-name">Gabi's</span>
+      <span class="t-num">60<sup>th</sup></span>
+      <span class="t-party">Birthday Party</span>
+    </div>
+
+    <p class="hero-motto">Disco Fever</p>
     <div class="hero-date">26. Juni 2026</div>
   </div>
 
@@ -378,7 +384,6 @@
     <span class="sec-label fade">Die Geburtstagskind</span>
     <div class="gallery fade">
       <div class="gallery-item"><img src="images/foto1.jpg" alt="Gabi"></div>
-      <div class="gallery-item"><img src="images/foto2.jpg" alt="Gabi"></div>
       <div class="gallery-item"><img src="images/foto3.jpg" alt="Gabi"></div>
       <div class="gallery-item"><img src="images/foto4.jpg" alt="Gabi"></div>
       <div class="gallery-item"><img src="images/foto5.jpg" alt="Gabi"></div>
@@ -393,26 +398,26 @@
     <span class="sec-label fade">Wo &amp; Wann</span>
     <h2 class="sec-title fade">Alle Details</h2>
 
-    <div class="detail-block fade">
+    <div class="fade">
       <span class="detail-key">Ort</span>
       <p class="detail-val">Wirtsstodl, Tauberfeld</p>
       <p class="detail-note">Kirchplatz 1a, Tauberfeld</p>
-      <a href="https://www.google.com/maps/search/?api=1&query=Kirchplatz+1a+Tauberfeld" target="_blank" rel="noopener" class="map-link">
+      <a href="https://maps.app.goo.gl/2gY2uK5zNRG2oRoL6" target="_blank" rel="noopener" class="map-link">
         In Google Maps &rarr;
       </a>
     </div>
 
     <hr class="rule fade">
 
-    <div class="detail-block fade">
+    <div class="fade">
       <span class="detail-key">Beginn</span>
-      <p class="detail-val">18:00 Uhr</p>
-      <p class="detail-note">Fur Essen &amp; Trinken ist gesorgt.</p>
+      <p class="detail-val">ab 18:00 Uhr</p>
+      <p class="detail-note">F&uuml;r Essen &amp; Trinken ist reichlich gesorgt.</p>
     </div>
 
     <hr class="rule fade">
 
-    <div class="detail-block fade">
+    <div class="fade">
       <span class="detail-key">Hinweis</span>
       <p class="detail-note">For Women and Special Guests only.</p>
     </div>
@@ -424,12 +429,8 @@
   <div class="inner">
     <span class="sec-label fade">Dress Code</span>
     <h2 class="sec-title fade">Disco Fever</h2>
-    <div class="video-grid fade">
-      <video controls playsinline>
-        <source src="video/dresscode1.mov" type="video/quicktime">
-        <source src="video/dresscode1.mov" type="video/mp4">
-      </video>
-      <video controls playsinline>
+    <div class="video-single fade">
+      <video id="dc-video" autoplay loop muted playsinline>
         <source src="video/dresscode2.mov" type="video/quicktime">
         <source src="video/dresscode2.mov" type="video/mp4">
       </video>
@@ -439,15 +440,16 @@
 
 <!-- GIFT -->
 <section id="gift">
+  <div id="gift-bg"></div>
   <div class="inner">
     <span class="sec-label fade">Mitbringen</span>
     <p class="gift-quote fade">
       Du brauchst nur dich und gute Laune mitbringen.
     </p>
     <p class="gift-note fade">
-      Falls du trotzdem etwas schenken mochtest, steht eine
+      Falls du trotzdem etwas schenken m&ouml;chtest, steht eine
       <strong>Spardose</strong> bereit &mdash;
-      damit ich mir einen Wunsch erfullen kann.
+      damit ich mir einen Wunsch erf&uuml;llen kann.
     </p>
   </div>
 </section>
@@ -460,8 +462,7 @@
     <div class="spotify-wrap fade">
       <iframe
         src="https://open.spotify.com/embed/track/12bYYQaLqHliSXvRIYlq8G?utm_source=generator&theme=0"
-        width="100%"
-        height="152"
+        width="100%" height="152"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy">
       </iframe>
@@ -490,10 +491,14 @@
 </div>
 
 <script>
-  /* hero image subtle zoom on load */
+  /* hero zoom on load */
   window.addEventListener('load', () => {
     document.getElementById('hero-bg').classList.add('loaded');
   });
+
+  /* slow down dresscode video */
+  const dcVid = document.getElementById('dc-video');
+  dcVid.addEventListener('loadedmetadata', () => { dcVid.playbackRate = 0.75; });
 
   /* scroll fade-in */
   const io = new IntersectionObserver(entries => {
