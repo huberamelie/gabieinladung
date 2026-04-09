@@ -265,7 +265,6 @@
       display: flex;
       flex-direction: column;
       gap: .35rem;
-      height: 100%;
       overflow: hidden;
     }
 
@@ -273,7 +272,6 @@
       width: 100%;
       flex: 1;
       min-height: 0;
-      height: 0;
       object-fit: cover;
       display: block;
       border-radius: 2px;
@@ -550,9 +548,22 @@
     document.getElementById('hero-bg').classList.add('loaded');
   });
 
-  /* slow down dresscode video */
+  /* slow down dresscode video + sync frame column heights to video */
   const dcVid = document.getElementById('dc-video');
   dcVid.addEventListener('loadedmetadata', () => { dcVid.playbackRate = 0.75; });
+
+  function syncFrameHeight() {
+    const h = dcVid.offsetHeight;
+    if (h > 0) {
+      document.querySelectorAll('.frame-col').forEach(col => {
+        col.style.height = h + 'px';
+      });
+    }
+  }
+  dcVid.addEventListener('loadedmetadata', syncFrameHeight);
+  window.addEventListener('resize', syncFrameHeight);
+  setTimeout(syncFrameHeight, 300);
+  setTimeout(syncFrameHeight, 1000);
 
   /* scroll fade-in */
   const io = new IntersectionObserver(entries => {
