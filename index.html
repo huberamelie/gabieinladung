@@ -336,6 +336,8 @@
 
     /* ── MUSIC ────────────────────────────────────────────────── */
     #music { background: var(--black); }
+    .spotify-wrap { border-radius: 3px; overflow: hidden; }
+    .spotify-wrap iframe { border: none; display: block; border-radius: 3px; }
 
     /* ── SPOTIFY POPUP ────────────────────────────────────────── */
     #spotify-popup {
@@ -542,8 +544,16 @@
     <span class="sec-label fade">Stimmung</span>
     <h2 class="sec-title fade">Sound of the Night</h2>
     <p class="detail-note fade" style="margin-bottom:1.8rem;">Musical Highlight der Nacht: <span style="color:var(--white);font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;">DJ Funshine</span> &mdash; be ready to dance!</p>
-    <p class="detail-note fade">Unwritten &mdash; Natasha Bedingfield<br>
-    <span style="font-size:.75rem;color:rgba(255,255,255,.35);">Läuft automatisch beim Öffnen der Seite.</span></p>
+    <div class="spotify-wrap fade">
+      <iframe
+        src="https://open.spotify.com/embed/track/3U5JVgI2x4rDyHGObzJfNf?utm_source=generator&theme=0"
+        width="100%" height="152"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <div style="margin-top:.6rem;"></div>
   </div>
 </section>
 
@@ -616,13 +626,24 @@
     links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
   }, { passive: true });
 
-  /* spotify popup close */
+  /* spotify popup: hide when music section is visible, show otherwise */
+  const popup = document.getElementById('spotify-popup');
+  const musicSection = document.getElementById('music');
+  let userClosed = false;
+
+  const musicObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (userClosed) return;
+      popup.classList.toggle('hidden', e.isIntersecting);
+    });
+  }, { threshold: 0.2 });
+  musicObserver.observe(musicSection);
+
   document.getElementById('popup-close').addEventListener('click', () => {
-    const popup = document.getElementById('spotify-popup');
+    userClosed = true;
     popup.classList.add('hidden');
-    // stop playback by resetting src
     const frame = document.getElementById('spotify-frame');
-    frame.src = frame.src;
+    frame.src = frame.src; // stops playback
   });
 
   /* lightbox */
