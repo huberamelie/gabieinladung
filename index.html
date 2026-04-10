@@ -576,7 +576,7 @@
   <button id="popup-close" aria-label="Schließen">&times;</button>
   <iframe
     id="spotify-frame"
-    src="https://open.spotify.com/embed/track/3U5JVgI2x4rDyHGObzJfNf?utm_source=generator&theme=0&autoplay=1"
+    src="https://open.spotify.com/embed/track/3U5JVgI2x4rDyHGObzJfNf?utm_source=generator&theme=0"
     height="80"
     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
   </iframe>
@@ -625,6 +625,17 @@
     secs.forEach(s => { if (window.scrollY >= s.offsetTop - 140) cur = s.id; });
     links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
   }, { passive: true });
+
+  /* trigger autoplay on first user interaction */
+  const spotifyFrame = document.getElementById('spotify-frame');
+  const autoplaySrc = 'https://open.spotify.com/embed/track/3U5JVgI2x4rDyHGObzJfNf?utm_source=generator&theme=0&autoplay=1';
+  function triggerPlay() {
+    spotifyFrame.src = autoplaySrc;
+    document.removeEventListener('click', triggerPlay);
+    document.removeEventListener('touchstart', triggerPlay);
+  }
+  document.addEventListener('click', triggerPlay);
+  document.addEventListener('touchstart', triggerPlay);
 
   /* spotify popup: hide when music section is visible, show otherwise */
   const popup = document.getElementById('spotify-popup');
